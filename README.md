@@ -99,3 +99,42 @@ return [
 **NOTE:** Yii won't create the database for you, this has to be done manually before you can access it.
 
 Also check and edit the other files in the `config/` directory to customize your application.
+
+nginx config
+
+server {
+	charset utf-8;
+	client_max_body_size 128M;
+
+	listen 80; ## listen for ipv4
+
+        server_name bistro39.com; 
+
+        root /home/htdocs/bistro39.com/www/web;
+	index index.php;
+
+        access_log  /var/log/nginx/bistro39.com_access.log;
+        error_log /var/log/nginx/bistro39.com_error.log;
+
+	location / {
+		try_files  $uri $uri/ index.php?$args;
+
+		location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {
+		    access_log  off;
+		    expires  360d;
+		    try_files  $uri =404;
+		}
+	}
+
+	location ~ \.php$ {
+		try_files $uri =404;
+		fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_index index.php;
+		include fastcgi_params;
+	}
+
+
+       location ~ /\.(ht|svn|git) {
+           deny all;
+       }
+}
