@@ -117,7 +117,7 @@ server {
         error_log /var/log/nginx/bistro39.com_error.log;
 
 	location / {
-		try_files  $uri $uri/ index.php?$args;
+		try_files  $uri $uri/ /index.php?$args;
 
 		location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {
 		    access_log  off;
@@ -131,8 +131,8 @@ server {
 		fastcgi_pass unix:/var/run/php5-fpm.sock;
 		fastcgi_index index.php;
 		include fastcgi_params;
+		fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
 	}
-
 
        location ~ /\.(ht|svn|git) {
            deny all;
