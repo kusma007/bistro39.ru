@@ -3,6 +3,7 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
+    'homeUrl' => '/',
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -16,8 +17,16 @@ $config = [
             ],
         ],
         'request' => [
+            'baseUrl' => '',
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'V5i-C4cXqXRLQ9MSSc2M3Xo0ur0Xacx3',
+        ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                'login' => 'site/login',
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
