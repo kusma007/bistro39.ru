@@ -29,7 +29,7 @@ $controller_action = Yii::$app->controller->route;
         <div class="wrap">
             <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => 'Бистро №1',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -38,7 +38,7 @@ $controller_action = Yii::$app->controller->route;
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    ['label' => 'Home', 'url' => ['/site/index']],
+                    ['label' => 'Home', 'url' => ['/']],
                     ['label' => 'Content', 'url' => ['/content-menu/index']],
 //                    ['label' => 'About', 'url' => ['/site/about']],
 //                    ['label' => 'Contact', 'url' => ['/site/contact']],
