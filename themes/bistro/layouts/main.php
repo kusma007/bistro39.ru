@@ -23,7 +23,7 @@ $controller_action = Yii::$app->controller->route;
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body <?php echo ($controller_action != 'site/index')? '':'style="overflow:hidden"'; ?>>
 <?php $this->beginBody() ?>
     <?php if($controller_action != 'site/index') { ?>
         <div class="wrap">

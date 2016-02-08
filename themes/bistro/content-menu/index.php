@@ -23,10 +23,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+//            ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'status',
+//            'status',
+            [
+                'attribute' => 'Status',
+                'format' => 'raw',
+                'value' => function ($model) {
+//                    if($model->status == 'on') {$class="btn-success";} else {$class='btn-warning';}
+                    return '<button class="btn-'.$model->status.'" onclick="sendAjax(this,\'content-menu\',\'swich-status\','.$model->id.')">'.$model->status.'</button>';
+                },
+            ],
             'content:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],

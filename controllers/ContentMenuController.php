@@ -114,6 +114,21 @@ class ContentMenuController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionSwichStatus($id)
+    {
+        $remove_model = ContentMenu::findOne(['status' => 'on']);
+        $remove_model->status = 'off';
+        $model = $this->findModel($id);
+        if($model->status == 'on') { $model->status = 'off';} else {{ $model->status = 'on';} }
+
+        if ($model->save() && $remove_model->save()) {
+            return $model->status;
+        } else {
+            return 'Error';
+        }
+
+    }
+
     /**
      * Finds the ContentMenu model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
