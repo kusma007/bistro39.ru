@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ContentMenuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Content Menus';
+$this->title = 'Контент меню';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="content-menu-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Content Menu', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать меню', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

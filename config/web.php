@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-RU',
     'components' => [
         'view' => [
             'theme' => [
@@ -26,6 +27,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'login' => 'site/login',
+                'content-menu' => 'content-menu/index',
             ]
         ],
         'cache' => [

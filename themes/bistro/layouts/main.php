@@ -38,14 +38,14 @@ $controller_action = Yii::$app->controller->route;
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    ['label' => 'Home', 'url' => ['/']],
-                    ['label' => 'Content', 'url' => ['/content-menu/index']],
+                    ['label' => 'Главная', 'url' => ['/']],
+                    ['label' => 'Контент', 'url' => ['/content-menu/index']],
 //                    ['label' => 'About', 'url' => ['/site/about']],
 //                    ['label' => 'Contact', 'url' => ['/site/contact']],
                     Yii::$app->user->isGuest ?
-                        ['label' => 'Login', 'url' => ['/site/login']] :
+                        ['label' => 'Вход', 'url' => ['/site/login']] :
                         [
-                            'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                            'label' => 'Выход (' . Yii::$app->user->identity->username . ')',
                             'url' => ['/site/logout'],
                             'linkOptions' => ['data-method' => 'post']
                         ],
