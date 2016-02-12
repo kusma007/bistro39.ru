@@ -27,7 +27,7 @@ class ContentMenu extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'content'], 'required'],
+            [['content'], 'required'],
             [['status', 'content'], 'string']
         ];
     }
