@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
 //                    if($model->status == 'on') {$class="btn-success";} else {$class='btn-warning';}
-                    return '<button class="btn-'.$model->status.'" onclick="sendAjax(this,\'content-menu\',\'swich-status\','.$model->id.')">'.$model->status.'</button>';
+                    return '<button class="btn-'.$model->status.'" value="'.$model->status.'" onclick="sendAjax(this,\'content-menu\',\'swich-status\','.$model->id.')">'.$model->status.'</button>';
                 },
             ],
             'content:ntext',

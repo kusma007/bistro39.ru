@@ -74,7 +74,8 @@ class ContentMenuController extends Controller
         $model = new ContentMenu();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+//            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('/content-menu');
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -93,7 +94,8 @@ class ContentMenuController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+//            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('/content-menu');
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -116,12 +118,25 @@ class ContentMenuController extends Controller
 
     public function actionSwichStatus($id)
     {
-        $remove_model = ContentMenu::findOne(['status' => 'on']);
-        $remove_model->status = 'off';
+
+//        $remove_model = ContentMenu::findOne(['status' => 'on']);
+        $remove_model = ContentMenu::find()->where(['status' => 'on'])->all();
+        if ($remove_model) {
+            foreach($remove_model as $rem_model) {
+                $rem_model->status = 'off';
+            }
+        }
+
+
         $model = $this->findModel($id);
         if($model->status == 'on') { $model->status = 'off';} else {{ $model->status = 'on';} }
 
-        if ($model->save() && $remove_model->save()) {
+        if ($model->save()) {
+            if ($remove_model) {
+                foreach($remove_model as $rem_model) {
+                    $rem_model->save();
+                }
+            }
             return $model->status;
         } else {
             return 'Error';
