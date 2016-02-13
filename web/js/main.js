@@ -10,8 +10,8 @@ function sendAjax(elem,controller,action,id) {
             method: "POST",
             url: "/"+controller+"/"+action+'?id='+id
         }).done(function(data) {
-            $('.btn-on').html('off').removeClass('btn-on').addClass('btn-off').val('off');
-            $(elem).html(data).removeAttr('class').addClass('btn-'+data).val(data);
+            $('.menu-on').html('off').removeClass('menu-on').addClass('menu-off').val('off');
+            $(elem).html(data).removeAttr('class').addClass('menu-'+data).val(data);
         });
     }
 }

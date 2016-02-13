@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
 //            ['class' => 'yii\grid\SerialColumn'],
 
@@ -31,8 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'Status',
                 'format' => 'raw',
                 'value' => function ($model) {
-//                    if($model->status == 'on') {$class="btn-success";} else {$class='btn-warning';}
-                    return '<button class="btn-'.$model->status.'" value="'.$model->status.'" onclick="sendAjax(this,\'content-menu\',\'swich-status\','.$model->id.')">'.$model->status.'</button>';
+                    return '<button class="btn-on menu-'.$model->status.'" value="'.$model->status.'" onclick="sendAjax(this,\'content-menu\',\'swich-status\','.$model->id.')">'.$model->status.'</button>';
                 },
             ],
             'content:ntext',

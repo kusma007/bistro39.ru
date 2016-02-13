@@ -72,9 +72,16 @@ class ContentMenuController extends Controller
     public function actionCreate()
     {
         $model = new ContentMenu();
+        $model->status = 'on';
+        $remove_model = ContentMenu::find()->where(['status' => 'on'])->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
+            if ($remove_model) {
+                foreach($remove_model as $rem_model) {
+                    $rem_model->status = 'off';
+                    $rem_model->save();
+                }
+            }
             return $this->redirect('/content-menu');
         } else {
             return $this->render('create', [
@@ -129,7 +136,7 @@ class ContentMenuController extends Controller
 
 
         $model = $this->findModel($id);
-        if($model->status == 'on') { $model->status = 'off';} else {{ $model->status = 'on';} }
+        if($model->status == 'on') { $model->status = 'off';} else { $model->status = 'on'; }
 
         if ($model->save()) {
             if ($remove_model) {
