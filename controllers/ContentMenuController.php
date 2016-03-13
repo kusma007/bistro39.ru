@@ -150,23 +150,6 @@ class ContentMenuController extends Controller
         }
     }
 
-    //bistro39.ru/content-menu/update-status
-    public function actionUpdateStatus()
-    {
-        $model_on = ContentMenu::findOne(['status' => 'on']);
-        $model_on->status = 'off';
-        $id_off = $model_on->id+1;
-
-        $count_content = ContentMenu::find()->count();
-        if($id_off > $count_content) {$id_off = 1;}
-        $model = $this->findModel($id_off);
-        $model->status = 'on';
-
-        if($model->save() && $model_on->save()) {
-            return true;
-        }
-    }
-
     /**
      * Finds the ContentMenu model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

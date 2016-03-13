@@ -99,4 +99,31 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionUpdateStatus()
+    {
+//        return $this->render('update-status');
+
+        $model_on = ContentMenu::findOne(['status' => 'on']);
+        $model_on->status = 'off';
+        $model = ContentMenu::find()->where(['>','id',$model_on->id])->orderBy(['id' => SORT_ASC])->one();
+        if(!$model) {
+            $model = $this->findModelContent('1');
+        }
+        $model->status = 'on';
+
+        if($model->save() && $model_on->save()) {
+            return true;
+        }
+
+    }
+
+    protected function findModelContent($id)
+    {
+        if (($model = ContentMenu::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 }
