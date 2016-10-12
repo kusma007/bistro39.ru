@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $status
  * @property string $content
+ * @property string $date_update
  */
 class ContentMenu extends \yii\db\ActiveRecord
 {
@@ -28,7 +29,8 @@ class ContentMenu extends \yii\db\ActiveRecord
     {
         return [
             [['content'], 'required'],
-            [['status', 'content'], 'string']
+            [['status', 'content'], 'string'],
+            [['date_update'], 'safe'],
         ];
     }
 
@@ -39,8 +41,9 @@ class ContentMenu extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'status' => 'Status',
-            'content' => 'Content',
+            'status' => 'Статус',
+            'content' => 'Контент',
+            'date_update' => 'Дата',
         ];
     }
 }

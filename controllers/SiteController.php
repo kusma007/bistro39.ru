@@ -102,19 +102,28 @@ class SiteController extends Controller
 
     public function actionUpdateStatus()
     {
-//        return $this->render('update-status');
-
         $model_on = ContentMenu::findOne(['status' => 'on']);
-        $model_on->status = 'off';
-        $model = ContentMenu::find()->where(['>','id',$model_on->id])->orderBy(['id' => SORT_ASC])->one();
-        if(!$model) {
-            $model = $this->findModelContent('1');
-        }
-        $model->status = 'on';
+//        $interval = date('d', strtotime(date('Y-m-d H:i:s'))) - date('d', strtotime($model_on->date_update)-(2*24*60*60));
+        $interval = date('d', strtotime(date('Y-m-d H:i:s'))) - date('d', strtotime($model_on->date_update));
+//        var_dump($interval);
+        if ($interval == 2) {
+            $model_on->status = 'off';
+            $model = ContentMenu::find()->where(['>','id',$model_on->id])->orderBy(['id' => SORT_ASC])->one();
+            if(!$model) {
+//            $model = $this->findModelContent('1');
+                $model = ContentMenu::find()->orderBy(['id' => SORT_ASC])->one();
+            }
 
-        if($model->save() && $model_on->save()) {
-            return true;
+            $model->status = 'on';
+            $model->date_update = date('Y-m-d H:i:s');
+
+            if($model->save() && $model_on->save()) {
+                return true;
+            }
+        } else {
+            echo 'Разница в днях ' . $interval;
         }
+
 
     }
 

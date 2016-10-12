@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return '<button class="btn-on menu-'.$model->status.'" value="'.$model->status.'" onclick="sendAjax(this,\'content-menu\',\'swich-status\','.$model->id.')">'.$model->status.'</button>';
                 },
             ],
+            'date_update:datetime',
             'content:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],

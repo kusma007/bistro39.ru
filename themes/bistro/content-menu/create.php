@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ContentMenu */
 
-$this->title = 'Create Content Menu';
-$this->params['breadcrumbs'][] = ['label' => 'Content Menus', 'url' => ['index']];
+$this->title = 'Создать меню';
+$this->params['breadcrumbs'][] = ['label' => 'Меню', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="content-menu-create">

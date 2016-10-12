@@ -128,6 +128,7 @@ class ContentMenuController extends Controller
 
 //        $remove_model = ContentMenu::findOne(['status' => 'on']);
         $remove_model = ContentMenu::find()->where(['status' => 'on'])->all();
+
         if ($remove_model) {
             foreach($remove_model as $rem_model) {
                 $rem_model->status = 'off';
@@ -136,8 +137,10 @@ class ContentMenuController extends Controller
 
 
         $model = $this->findModel($id);
-        if($model->status == 'on') { $model->status = 'off';} else { $model->status = 'on'; }
-
+        if($model->status == 'on') { $model->status = 'off';} else { $model->status = 'on'; $model->date_update = date('Y-m-d H:i:s'); }
+//        var_dump($remove_model);
+//        var_dump($model);
+//        die;
         if ($model->save()) {
             if ($remove_model) {
                 foreach($remove_model as $rem_model) {
