@@ -103,6 +103,9 @@ class SiteController extends Controller
     public function actionUpdateStatus()
     {
         $model_on = ContentMenu::findOne(['status' => 'on']);
+//        var_dump($model_on->date_update);
+//        var_dump(date('Y-m-d H:i:s'));
+
 //        $interval = date('d', strtotime(date('Y-m-d H:i:s'))) - date('d', strtotime($model_on->date_update)-(2*24*60*60));
         $interval = date('d', strtotime(date('Y-m-d H:i:s'))) - date('d', strtotime($model_on->date_update));
 //        var_dump($interval);
